@@ -9,6 +9,7 @@ This was tested on the latest firmware as of August, 2025.
 The working setup was ultimately switching to go2rtc based on this article https://docs.frigate.video/configuration/restream#with-sub-stream
 
 
+## Frigate config
 
 ```yaml
 mqtt:
@@ -17,10 +18,10 @@ mqtt:
 go2rtc:
   streams:
     back:
-      - http://cameraIp/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=username&password=passwordValue
+      - https://cameraIp/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=username&password=passwordValue
       - ffmpeg:back#audio=opus
     back_sub:
-      - http://cameraIp/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user=username&password=passwordValue
+      - https://cameraIp/flv?port=1935&app=bcs&stream=channel0_ext.bcs&user=username&password=passwordValue
       - ffmpeg:back_sub#audio=opus
 
 cameras:
@@ -40,6 +41,14 @@ cameras:
             - detect
 ```
 
-Some other things that I changed:
+## Camera Settings
 
-Enabled HTTP and RSTP in the camera settings.
+<img width="502" height="585" alt="image" src="https://github.com/user-attachments/assets/5847d5d2-0454-4a3d-a12c-1456b77ee3da" />
+
+<img width="691" height="637" alt="image" src="https://github.com/user-attachments/assets/8cc28784-f11a-47d8-9dcb-72ecb3448a2d" />
+
+<img width="505" height="562" alt="image" src="https://github.com/user-attachments/assets/a53c0034-d6d0-405e-b816-fc97498da4a2" />
+
+## HTTPS Note:
+My example config uses HTTPS. If you don't want to use HTTPS, you can switch to http in the yaml config for the 2 streams. 
+Then in your camera settings you can enable http in the Server Settings. 
